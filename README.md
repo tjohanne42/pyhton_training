@@ -1,1 +1,1 @@
-# pyhton_training
+This is some exercice that I made while learning python.

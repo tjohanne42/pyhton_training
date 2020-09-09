@@ -1,0 +1,1 @@
+This is some fractal visiualiseur made in python3 using pygame.
