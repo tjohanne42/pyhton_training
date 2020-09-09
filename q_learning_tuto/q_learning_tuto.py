@@ -1,3 +1,5 @@
+#coding:utf-8
+
 import numpy as np
 import random
 
@@ -20,6 +22,7 @@ class Grid(object):
 	def reset(self):
 		self.x = self.x_original
 		self.y = self.y_original
+		# a verif
 		return self.y * self.size + self.x
 
 	def step(self, action):
@@ -32,7 +35,7 @@ class Grid(object):
 			self.y += 1
 		elif self.x > 0:
 			self.x -= 1
-		#doit retourner les coordonnees de la nouvelle pos
+		#doit retourner les coordonnees de la nouvelle pos et le reward
 		return (self.y * self.size + self.x, self.grid[self.y][self.x])
 
 	def show(self):
@@ -105,16 +108,18 @@ for i in range(0, 2000):
 		Q[st][at] = Q[st][at] + 0.1 * (r + 0.9 * Q[stp1][atp1] - Q[st][at])
 		st = stp1
 
-for i in range(0, 35):
-	print(i, Q[i])
+print("Q table :")
+for i in range(0, 36):
+	print("line", int(i / 6), ": column", i % 6, Q[i])
 
+print("")
 done = False
 while done == False:
 	st = grid.reset()
-	print("The car is the 2, the car has to take the maximum reward on the map")
+	print("The car is the 2, the car has to take the maximum reward on the map\n")
 	while grid.finished() == False and done == False:
 		grid.show()
-		print("Press Enter or type \"quit\"")
+		print("\nPress Enter or type \"quit\"")
 		i = input("")
 		try:
 			if i == "quit":
